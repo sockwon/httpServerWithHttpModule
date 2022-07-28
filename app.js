@@ -47,8 +47,22 @@ const httpRequestListener = (request, response)=>{
                     password:user.password
                 })
                 response.end(JSON.stringify({message:'user created'}))
+            })}
+        else if(url === "user/post"){
+            let body ='';
+            response.on('data', (data)=>{body += data});
+            response.on('end', ()=>{
+                const post = JSON.parse(body);
+                posts.push({
+                    id:post.id,
+                    title:post.title,
+                    content:post.content,
+                    userId:post.userId
+                })
+                response.end(JSON.stringify({message:'user created'}))
             })
         }
+        
      }
 }
 const PORT = 8000;
