@@ -14,9 +14,9 @@ const users = [
       email: "Connell29@gmail.com",
       password: "password",
     },
-  ];
+  ]
   
-  const posts = [
+const posts =[
     {
       id: 1,
       title: "간단한 HTTP API 개발 시작!",
@@ -29,7 +29,9 @@ const users = [
       content: "Request/Response와 Stateless!!",
       userId: 1,
     },
-  ];
+  ]
+
+  
 
 const httpRequestListener = (request, response)=>{
      const url = request.url;
@@ -61,10 +63,19 @@ const httpRequestListener = (request, response)=>{
                 })
                 response.end(JSON.stringify({message:'user created'}))
             })
-        }
-        
+        } 
      }
-}
+    else if(method === "GET"){
+        response.writeHead(200, {'Content-Type' : 'application/json'});
+        if(url === '/users'){
+            response.end(JSON.stringify(users))
+            }
+        else if(url === '/posts'){
+            response.end(JSON.stringify(posts))
+            }
+        }
+    }
+
 const PORT = 8000;
 const IP = '127.0.0.1';
 
