@@ -132,9 +132,6 @@ const httpRequestListener = (request, response)=>{
 
   }
 
-
-
-
 const PORT = 8000;
 const IP = '127.0.0.1';
 
