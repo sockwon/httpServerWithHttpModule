@@ -121,8 +121,15 @@ const httpRequestListener = (request, response)=>{
         response.end(JSON.stringify({data : posts}));
         })
      }
+    if(method==="DELETE"){
+        const postId = parseInt(url.split("/")[2]);
+        const targetPost = posts.find((post=>post.id === postId))
+        const targetIndex = posts.indexOf(targetPost);
+        const del = posts.splice(targetIndex, 1);
+        response.writeHead(204, {"Content-Type": "application/json"});
+        response.end(JSON.stringify({MESSAGE : "postingDeleted"}))
+    }
 
-     
   }
 
 
